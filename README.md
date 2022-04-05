@@ -2,6 +2,9 @@
 
 ## Categories
 
+### 🦝 Javascript
+- [DataTables 라이브러리](Javascript/DataTables/DataTables.md)
+
 ### 📝 Markdown
 - [목차 생성 및 이미지 첨부](Markdown/basic_grammer1.md)
 
