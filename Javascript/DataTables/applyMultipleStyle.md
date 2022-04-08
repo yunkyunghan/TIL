@@ -22,7 +22,7 @@ $('c[r=A12]', sheet).attr('s', '32'); // Bold, grey background, thin black borde
 아래 엑셀은 위와 다르게 깔끔하게 정렬이 된 것을 볼 수 있다. <br>
 또한 기본으로 제공되는 4가지 color 외 다른 color를 자유자재로 쓸 수 있다 🙊 
 
-![screenshot](afterApplyStyle.PNG)
+![screenshot](afterApplyStyle.png)
 
 ```js
 customize: function (xlsx) {
