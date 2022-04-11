@@ -25,6 +25,15 @@ $('c[r=A12]', sheet).attr('s', '32'); // Bold, grey background, thin black borde
 ![screenshot](afterApplyStyle.png)
 
 ```js
+// text bold 설정 
+'<xf fontId="2"/></xf>'
+
+// number에 comma 표출 (3자리씩)
+'<xf numFmtId="3"/></xf>'
+
+```
+
+```js
 customize: function (xlsx) {
     let sSh = xlsx.xl['styles.xml'];
     let lastXfIndex = $('cellXfs xf', sSh).length - 1;
