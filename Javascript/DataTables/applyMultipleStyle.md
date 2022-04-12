@@ -15,7 +15,8 @@
 $('c[r=A12]', sheet).attr('s', '51'); //  Centred text
 $('c[r=A12]', sheet).attr('s', '32'); // Bold, grey background, thin black border
 ```
-### 변경
+### 변경 ( Chrome, FF )
+IE 브라우저는 아래 코드의 문법을 사용할 수 없다. 따라서 브라우저 별 코드를 따로 정리했다.
 
 `excel example`
 
@@ -89,6 +90,63 @@ customize: function (xlsx) {
     })
 }
 ```
+### 변경 ( Chrome, FF, IE )
+`innerHTML`는 IE에서 제대로 동작하지 않기 때문에 IE 브라우저에서 사용 할 시 아래와 같이 써주면 된다. 
+
+```js
+let styles = xlsx.xl['styles.xml'];
+
+//Add 3 colors
+let addCount = 3;
+
+let fillscount = +$('fills', styles).attr('count');
+$('fills', styles).attr('count', addCount + fillscount + '');
+let cellXfscount = +$('cellXfs', styles).attr('count');
+$('cellXfs', styles).attr('count', addCount + cellXfscount + '');
+
+
+let fills = $('fills', styles)[0];
+let cellXfs = $('cellXfs', styles)[0];
+let namespace = styles.lookupNamespaceURI(null);
+
+let bgcolorArray = ['#F2F2F2', '#ffffff']; // lightGrey, white
+
+for (let i = 0; i < bgcolorArray.length; i++) {
+    let bgcolor = bgcolorArray[i];
+    let fill = styles.createElementNS(namespace, 'fill');
+    let patternFill = styles.createElementNS(namespace, 'patternFill');
+    patternFill.setAttribute("patternType", "solid");
+    let fgColor = styles.createElementNS(namespace, 'fgColor');
+    fgColor.setAttribute("rgb", bgcolor.substring(1));
+    let bgColor = styles.createElementNS(namespace, 'bgColor');
+    bgColor.setAttribute("indexed", "64");
+    patternFill.appendChild(fgColor);
+    patternFill.appendChild(bgColor);
+    fill.appendChild(patternFill);
+    fills.appendChild(fill);
+
+    let xf = styles.createElementNS(namespace, 'xf');
+    xf.setAttribute("numFmtId", "3"); // 숫자 콤마
+    xf.setAttribute("fontId", "0");
+    xf.setAttribute("fillId", "" + (fillscount + i));
+    xf.setAttribute("borderId", "1");
+    xf.setAttribute("applyFont", "1");
+    xf.setAttribute("applyFill", "1");
+    xf.setAttribute("applyBorder", "1");
+
+    let align = document.createElementNS(namespace, "alignment");
+    align.setAttribute("horizontal", "center");
+    align.setAttribute("vertical", "center");
+    align.setAttribute("wrapText", "1");
+    xf.appendChild(align);
+    cellXfs.appendChild(xf);
+}
+
+$(this).attr('s', (cellXfscount + 0) + ''); // lightGrey
+$(this).attr('s', (cellXfscount + 1) + ''); // white
+```
 
 ### 참고
 - https://www.datatables.net/forums/discussion/comment/135501
+- http://live.datatables.net/qokabeve/17/edit
+- https://stackoverflow.com/questions/41485310/exporting-jquery-datatable-to-excel-with-additional-rows-is-not-working-ie
