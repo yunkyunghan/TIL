@@ -4,7 +4,7 @@
 
 `background-color, border, text-center, wrapped text(line break)` 등 여러 style을 하나의 cell에 적용하고 싶었다. <br>
 
-### 기존
+### ✅ 기존
 아래 코드처럼 같은 cell에 다른 attribute 값을 주면 마지막꺼가 적용이 된다.
 
 `excel example`
@@ -90,7 +90,7 @@ customize: function (xlsx) {
     })
 }
 ```
-### 변경 ( Chrome, FF, IE )
+### ✅ 변경 ( Chrome, FF, IE )
 `innerHTML`는 IE에서 제대로 동작하지 않기 때문에 IE 브라우저에서 사용 할 시 아래와 같이 써주면 된다. 
 
 ```js
@@ -146,10 +146,11 @@ $(this).attr('s', (cellXfscount + 0) + ''); // lightGrey
 $(this).attr('s', (cellXfscount + 1) + ''); // white
 ```
 
-### background-color별 다른 multiple style 적용_변경 ( Chrome, FF, IE )
-변경된 위의 코드는 background-color만 다르고 모두 같은 style을 주고 있다. 
-쉽게 말하면 background-color가 grey, white로만 다를 뿐 다른 style (text location: center, border, bold 등) 모두 동일하다.
-하지만 background-color가 grey면 text center, text bold를 하고 싶고 
+### ✅ background-color별 다른 multiple style 적용_변경 ( Chrome, FF, IE )
+
+변경된 위의 코드는 **background-color만 다르고 모두 같은 style**을 주고 있다. <br>
+쉽게 말하면 background-color가 grey, white로만 다를 뿐 다른 style (text location: center, border, bold 등) 모두 동일하다. <br>
+하지만 background-color가 grey면 text center, text bold를 하고 싶고 <br>
 background-color가 white면 text top/left 를 하고 싶듯이 다른 style을 주고 싶으면 `컬러별 조건문을 추가`해주면 된다 !
 
 ```js
@@ -203,7 +204,7 @@ for (let i = 0; i < bgcolorArray.length; i++) {
     } else if (bgcolor === '#ffffff') {
     let xf = styles.createElementNS(namespace, 'xf');
         xf.setAttribute("numFmtId", "3"); // 숫자 콤마
-        xf.setAttribute("fontId", "1");
+        xf.setAttribute("fontId", "2"); // bold
         xf.setAttribute("fillId", "" + (fillscount + i));
         xf.setAttribute("borderId", "1");
         xf.setAttribute("applyFont", "1");
