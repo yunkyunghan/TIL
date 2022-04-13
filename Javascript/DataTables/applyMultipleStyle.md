@@ -15,7 +15,7 @@
 $('c[r=A12]', sheet).attr('s', '51'); //  Centred text
 $('c[r=A12]', sheet).attr('s', '32'); // Bold, grey background, thin black border
 ```
-### 변경 ( Chrome, FF )
+### ✅ 변경 ( Chrome, FF )
 IE 브라우저는 아래 코드의 문법을 사용할 수 없다. 따라서 브라우저 별 코드를 따로 정리했다.
 
 `excel example`
