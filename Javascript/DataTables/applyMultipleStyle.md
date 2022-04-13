@@ -153,6 +153,10 @@ $(this).attr('s', (cellXfscount + 1) + ''); // white
 하지만 background-color가 grey면 text center, text bold를 하고 싶고 <br>
 background-color가 white면 text top/left 를 하고 싶듯이 다른 style을 주고 싶으면 `컬러별 조건문을 추가`해주면 된다 !
 
+`excel example`
+
+![screenshot](GoodExample.PNG)
+
 ```js
 let styles = xlsx.xl['styles.xml'];
 
