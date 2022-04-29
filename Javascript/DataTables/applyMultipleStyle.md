@@ -190,8 +190,13 @@ for (let i = 0; i < bgcolorArray.length; i++) {
     fills.appendChild(fill);
 
     if (bgcolor === '#F2F2F2') {
+    // 숫자에 % (반드시 export 할 data에 %가 있어야 함)
+    let numFmt = styles.createElementNS(namespace, 'numFmt');
+        numFmt.setAttribute("formatCode", "##0.00%"); 
+        numFmt.setAttribute("numFmtId", "300");
+
     let xf = styles.createElementNS(namespace, 'xf');
-        xf.setAttribute("numFmtId", "3"); // 숫자 콤마
+        xf.setAttribute("numFmtId", "300"); // 퍼센트
         xf.setAttribute("fontId", "0");
         xf.setAttribute("fillId", "" + (fillscount + i));
         xf.setAttribute("borderId", "1");
@@ -204,6 +209,7 @@ for (let i = 0; i < bgcolorArray.length; i++) {
         align.setAttribute("vertical", "center");
         align.setAttribute("wrapText", "1");
         xf.appendChild(align);
+        cellXfs.appendChild(numFmt);
         cellXfs.appendChild(xf);
     } else if (bgcolor === '#ffffff') {
     let xf = styles.createElementNS(namespace, 'xf');
