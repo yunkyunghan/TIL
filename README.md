@@ -9,6 +9,7 @@
 
 ### 💻 Git
 - [터미널에서 계정 확인 및 변경](Git/checkUserInfo.md)
+- [계정 분리](Git/accountSeparation.md)
 
 ### 📝 Markdown
 - [목차 생성 및 이미지 첨부](Markdown/basic_grammer1.md)
